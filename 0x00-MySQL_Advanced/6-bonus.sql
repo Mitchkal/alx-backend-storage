@@ -1,3 +1,5 @@
+-- ADD bonus stored procedure
+
 DELIMITER //
 
 CREATE PROCEDURE AddBonus (
