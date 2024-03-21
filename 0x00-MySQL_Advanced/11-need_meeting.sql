@@ -1,3 +1,5 @@
+-- create meeting as needed
+
 CREATE VIEW need_meeting AS
 SELECT 
     users.name
