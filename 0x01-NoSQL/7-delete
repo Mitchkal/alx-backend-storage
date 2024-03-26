@@ -1,2 +1,2 @@
-// dlelete all documents given query
-db.school.delete({name: "Holberton school"}
+// delete all documents given query
+db.school.deleteMany({name: "Holberton school"})
