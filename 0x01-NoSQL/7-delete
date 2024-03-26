@@ -1,0 +1,2 @@
+// dlelete all documents given query
+db.school.delete({name: "Holberton school"}
