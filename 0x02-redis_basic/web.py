@@ -17,8 +17,7 @@ def track_url(method: Callable) -> Callable:
     count decorator
     """
     @wraps(method)
-    def wrapper(*args, **kwargs):
-        url = args
+    def wrapper(url: str) -> str:
         key = f"count:{url}"
 
         cache.incr(key)
