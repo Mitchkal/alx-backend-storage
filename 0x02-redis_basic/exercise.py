@@ -6,6 +6,7 @@ classes and writing strings to Redis
 
 import uuid
 import redis
+from typing import Union
 
 
 class Cache:
@@ -15,12 +16,12 @@ class Cache:
 
     def __init__(self) -> None:
         """
-        store instance of redis clien
+        cache intitialization
         """
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: str | bytes | int | float) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         takes a data argument and returns a string
         """
