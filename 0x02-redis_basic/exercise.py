@@ -6,7 +6,25 @@ classes and writing strings to Redis
 
 import uuid
 import redis
+from functools import wraps
 from typing import Union, Callable, Any
+
+
+def count_calls(method: Callable) -> Callable:
+    """
+    count number of calls to cache calls methods
+    """
+    @wraps(method)
+    def wrapper(self, *args, **kwds):
+        """
+        wraps a method
+        """
+
+        key = method.__qualname__
+        self._redis.incr(key)
+        return method(self, *args, **kwds)
+
+    return wrapper
 
 
 class Cache:
@@ -21,6 +39,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         takes a data argument and returns a string
