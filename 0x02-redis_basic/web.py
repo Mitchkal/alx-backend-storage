@@ -36,5 +36,8 @@ def track_url(method: Callable) -> Callable:
 
 @track_url
 def get_page(url: str) -> str:
+    """
+    gets a url page and returns the html
+    """
     data = get(url)
     return data.text
