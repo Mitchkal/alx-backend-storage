@@ -2,10 +2,9 @@
 """
 module for get page function
 """
-
+from functools import wraps
 import redis
 from requests import get
-from functools import wraps
 from typing import Callable
 
 
@@ -18,6 +17,9 @@ def track_url(method: Callable) -> Callable:
     """
     @wraps(method)
     def wrapper(url: str) -> str:
+        """
+        wrapper function
+        """
         key = f"count:{url}"
 
         cache.incr(key)
