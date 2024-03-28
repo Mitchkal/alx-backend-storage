@@ -31,6 +31,7 @@ def track_url(method: Callable) -> Callable:
 
         html = method(url)
         cache.setex(data_key, 10, html)
+        cache.expire(key, 10)
         return html
     return wrapper
 
