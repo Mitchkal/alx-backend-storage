@@ -21,15 +21,16 @@ def track_url(method: Callable) -> Callable:
         wrapper function
         """
         key = f"count:{url}"
+        data_key = f"result:{url}"
 
         cache.incr(key)
-        cache_content = cache.get(key)
+        cache_content = cache.get(data_key)
 
         if cache_content:
             return cache_content.decode('utf-8')
 
         html = method(url)
-        cache.setex(key, 10, html)
+        cache.setex(data_key, 10, html)
         return html
     return wrapper
 
